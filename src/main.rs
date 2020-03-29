@@ -8,11 +8,12 @@ mod vga_buffer;
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
-    
-    loop {}
+    panic!("Some panic message");
+    // loop {}
 }
 
 #[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
     loop {} 
 }
